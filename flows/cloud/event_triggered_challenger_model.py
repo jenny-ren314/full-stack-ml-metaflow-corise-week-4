@@ -46,7 +46,7 @@ class TaxiFarePrediction(FlowSpec):
         # NOTE: we are split into training and validation set in the validation step which uses cross_val_score.
         # This is a simple/naive way to do this, and is meant to keep this example simple, to focus learning on deploying Metaflow flows.
         # In practice, you want split time series data in more sophisticated ways and run backtests. 
-        self.X = self.df["trip_distance"].values.reshape(-1, 1)
+        self.X = self.df[["trip_distance","passenger_count"]].values
         self.y = self.df["total_amount"].values
         self.next(self.linear_model)
 
